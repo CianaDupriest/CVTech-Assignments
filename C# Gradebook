@@ -1,0 +1,87 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace gradebook
+{
+    internal class Program
+    {
+
+        static string name(string firstname, string lastname)
+        {
+            return firstname + " " + lastname;
+        }
+
+        
+        static double grades(double grade1, double grade2, double grade3, int i)
+        {
+           double arrayed(double gradeone, double gradetwo, double gradethree, int x)
+                {
+                double[] gradesarray = { grade1, grade2, grade3 };
+                return gradesarray[x];
+                }
+
+            return arrayed(grade1, grade2, grade3, i);
+
+        }
+
+        static double avg(double gradeone, double gradetwo, double gradethree)
+        {
+            return (gradeone + gradetwo + gradethree) / 3;
+        }
+
+        static string letter(double gradeone, double gradetwo, double gradethree)
+        {
+            double aver = (gradeone + gradetwo + gradethree) / 3;
+            string letterg;
+
+            if (aver >= 90) {
+                letterg = "A";
+            }
+            else if (aver >= 80)
+            {
+                letterg = "B";
+            }
+            else if (aver >= 70)
+            {
+                letterg = "C";
+            }
+            else if (aver >= 60)
+            {
+                letterg = "D";
+            } else
+            {
+                letterg = "F";
+            }
+
+            return letterg;
+        }
+        static void Main(string[] args)
+        {
+            Console.WriteLine("enter first name: ");
+            string first = Console.ReadLine();
+            Console.WriteLine("enter last name: ");
+            string last = Console.ReadLine();
+
+            Console.WriteLine("enter grade 1: ");
+            double grade1 = Double.Parse(Console.ReadLine());
+            Console.WriteLine("enter grade 2: ");
+            double grade2 = Double.Parse(Console.ReadLine());
+            Console.WriteLine("enter grade 3: ");
+            double grade3 = Double.Parse(Console.ReadLine());
+
+            Console.WriteLine("student stastics: ");
+            Console.WriteLine(name(first, last));
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine("Grade " + (i+1) + ": " + grades(grade1, grade2, grade3, i));
+            }
+            Console.WriteLine("average: " + Math.Round(avg(grade1, grade2, grade3)));
+            Console.WriteLine("letter grade: " + letter(grade1, grade2, grade3));
+        }
+    }
+}
