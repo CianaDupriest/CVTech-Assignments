@@ -1,0 +1,34 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace grosspay
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Console.WriteLine("hourly wage: ");
+            double wage = Double.Parse(Console.ReadLine());
+            Console.WriteLine("hours worked: ");
+            double hours = Double.Parse(Console.ReadLine());
+
+            double pay;
+
+            if (hours > 40)
+            {
+                pay = (wage * 40) + (wage * 1.5 * (hours - 40));
+                
+            }
+            else
+            {
+                pay = wage * hours;
+            }
+
+            Console.WriteLine("gross pay: " + pay);
+        }
+    }
+}
