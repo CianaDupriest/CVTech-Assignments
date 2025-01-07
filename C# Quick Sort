@@ -1,0 +1,122 @@
+namespace Quick_Sort
+{
+    class Program
+    {
+        private static void Quick_Sort(int[] arr, int left, int right, string sorted)
+        {
+            // check if it needs to be sorted
+            if (left < right)
+            {
+                // find pivot
+                int pivot = Partition(arr, left, right, sorted);
+
+                // sort left and rigth
+                if (pivot > 1)
+                {
+                    Quick_Sort(arr, left, pivot - 1, sorted);
+                }
+                if (pivot + 1 < right)
+                {
+                    Quick_Sort(arr, pivot + 1, right, sorted);
+                }
+            }
+        }
+
+        // segregate the array
+        private static int Partition(int[] arr, int left, int right, string sorted)
+        {
+            // hello little pivot
+            int pivot = arr[left];
+
+            // go until left and rigth are defined numbers
+            while (true)
+            {
+
+                if (sorted == "ascending")
+                {
+                    // move left until greater than
+                    while (arr[left] < pivot)
+                    {
+                        left++;
+                    }
+
+                    // move right until lesser than
+                    while (arr[right] > pivot)
+                    {
+                        right--;
+                    }
+                }
+
+                if (sorted == "descending")
+                {
+                    // move left until lesser than
+                    while (arr[left] > pivot)
+                    {
+                        left++;
+                    }
+
+                    // move right until greater thjan
+                    while (arr[right] < pivot)
+                    {
+                        right--;
+                    }
+                }
+
+                // swap if left is smaller
+                if (left < right)
+                {
+                    if (arr[left] == arr[right]) return right;
+
+                    int temp = arr[left];
+                    arr[left] = arr[right];
+                    arr[right] = temp;
+                }
+                else
+                {
+                    //retunrn right
+                    return right;
+                }
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Give me 5 numbers. type a number then press enter, repeat steps until finished");
+
+            //list created
+            int[] arr = new int[5];
+
+            //gets numebrs
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine("give me a number:");
+                int anum = int.Parse(Console.ReadLine());
+                arr[i] = anum;
+            }
+
+            //print presorted klist
+            Console.WriteLine("presorted list: ");
+            foreach (var item in arr)
+            {
+                Console.Write(" " + item);
+            }
+            Console.WriteLine();
+
+            //ascend or descend
+            Console.WriteLine("ascending or descending");
+            string sorted = Console.ReadLine();
+
+            //sort arry
+            Quick_Sort(arr, 0, arr.Length - 1, sorted);
+
+            //print sorted array
+            Console.WriteLine("sorted list: ");
+
+            foreach (var item in arr)
+            {
+                Console.Write(" " + item);
+            }
+            Console.WriteLine();
+        }
+    }
+}
